@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.dao.IParameterMapper">
+    <!--根据用户名称查询部门领导名称-->
+    <select id="findByUserId" resultType="Parameter">
+        select * from P_Parameter where userId = #{userId}
+    </select>
+
+    <!--根据用户名称查询部门领导名称-->
+    <select id="findById" resultType="Parameter">
+        select * from P_Parameter where id = #{id}
+    </select>
+
+    <!--插入台账-->
+    <insert id="insertTz">
+        insert into P_Parameter(userName,userId,styleTz,writingTime,completion,task,recipient) values(
+         #{userName},#{userId},#{styleTz},#{writingTime},#{completion},#{task},#{recipient})
+    </insert>
+
+    <!--根据开始时间和结束时间查询台账信息-->
+    <select id="findTzByTime" resultType="Parameter">
+        select * from P_Parameter where userId = #{userId} and (writingTime between #{startTime} and #{endTime}) order by writingTime desc
+    </select>
+
+    <!--根据时间和台账类型查询台账信息-->
+    <select id="findTzByTimeAndByStyleTz" resultType="Parameter">
+        select * from P_Parameter where userId = #{userId} and styleTz = #{styleTz} and (writingTime between #{startTime} and #{endTime}) order by writingTime desc
+    </select>
+</mapper>

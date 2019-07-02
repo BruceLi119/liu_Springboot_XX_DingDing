@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.dao.IScoreMapper">
+    <!--插入审核后的分数信息-->
+    <insert id="insertScore" parameterType="java.util.List">
+        insert into
+        P_Score(userName,auditUserId,header,auditTime,deptId,ywTerm,ywBranch,ldTerm,ldBranch,ywScore,zhScore,byScore,khScore,money)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+                #{item.userName},#{item.auditUserId},#{item.header},#{item.auditTime},#{item.deptId},#{item.ywTerm},#{item.ywBranch},
+                #{item.ldTerm},#{item.ldBranch},#{item.ywScore},#{item.zhScore},#{item.byScore},#{item.khScore},#{item.money}
+            )
+        </foreach>
+    </insert>
+
+    <!--考核后更新分数到当前记录-->
+    <update id="updateScore" parameterType="java.util.List">
+        <foreach separator=";" collection="list" item="item" index="index">
+            update  P_Score
+            <set>
+                userName=#{item.userName},auditUserId=#{item.auditUserId},header=#{item.header},auditTime=#{item.auditTime},deptId=#{item.deptId},ywTerm=#{item.ywTerm},
+                ywBranch=#{item.ywBranch},ldTerm=#{item.ldTerm},ldBranch=#{item.ldBranch},ywScore=#{item.ywScore},zhScore=#{item.zhScore},byScore=#{item.byScore},
+                khScore=#{item.khScore},money=#{item.money}
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+
+    <!--根据台账日期和登录人的userId查看分数-->
+    <select id="findUserByMonth" resultType="Score">
+        select * from P_Score where auditUserId = #{auditUserId} and header like #{month};
+    </select>
+
+    <!--根据部门Id查询出部门所有人的姓名和部门所有人的userId-->
+    <select id="findUserByDeptId" resultType="java.util.Map">
+        select DingUserName,DingUserId from V_Ding_Realtion where DingDeptId = #{DingDeptId}
+    </select>
+</mapper>

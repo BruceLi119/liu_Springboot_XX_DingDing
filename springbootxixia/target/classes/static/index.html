@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>测试页</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<script type="text/javascript"
+        src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#insert").click(function () {
+            $.ajax({
+                type: "post",
+                url: "/parameter/insertTz",
+                contentType: "application/json;charset=utf-8",
+                data: '{"userName":"柳柳柳","userId":"123mutouren","styleTz":"dayTZ",' +
+                    '"writingTime":"2019-07-01","completion":"安居客了圣诞节拉屎基多拉企鹅我就去外i金额恶趣味饿呢请问您嗯嗯",' +
+                    '"task":"下自己爱搜ID骄傲四道就偶爱倒是进度我阿萨是的","recipient":"黎明"}',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    })
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#findByTime").click(function () {
+            $.ajax({
+                type: "post",
+                url: "parameter/findTzByTime",
+                contentType: "application/json;charset=utf-8",
+                data: '{"findUserId":"270614472121532094","startTime":"2019-07-01","endTime":"2019-07-02"}',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#findTzByTimeAndByStyleTz").click(function () {
+            $.ajax({
+                type: "post",
+                url: "parameter/findTzByTimeAndByStyleTz",
+                contentType: "application/json;charset=utf-8",
+                data: '{"findUserId":"270614472121532094","styleTz":"dayTZ","startTime":"2019-07-01","endTime":"2019-07-01"}',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#insertScore").click(function () {
+            $.ajax({
+                type: "post",
+                url: "score/insertScore",
+                contentType: "application/json;charset=utf-8",
+                data: '[{"userName": "张成","auditUserId":"0845643214654231132","header":"2019年06月台账","auditTime":"2019-07-03","ywTerm":100,"ywBranch":110,"ldTerm":100,"lBranch":100,"ywScore":110,"zhScore":100, "byScore":10,"khScore":100,"money":200},' +
+                    '{"userName": "周小超","auditUserId":"0845643214654231132","header":"2019年06月台账","auditTime":"2019-07-03","ywTerm":90,"ywBranch":100,"ldTerm":60,"lBranch":50,"ywScore":60,"zhScore":80, "byScore":10,"khScore":80,"money":180},' +
+                    '{"userName": "柳仕胜","auditUserId":"0845643214654231132","header":"2019年06月台账","auditTime":"2019-07-03","ywTerm":80,"ywBranch":80,"ldTerm":50,"lBranch":80,"ywScore":90,"zhScore":90, "byScore":50,"khScore":90,"money":160}]',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#findUserByMonth").click(function () {
+            $.ajax({
+                type: "post",
+                url: "score/findUserByMonth",
+                contentType: "application/json;charset=utf-8",
+                data: '{"auditUserId":"0845643214654231132","month":"2019-06"}',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    })
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#updateScore").click(function () {
+            $.ajax({
+                type: "post",
+                url: "score/updateScore",
+                contentType: "application/json;charset=utf-8",
+                data: '[{"id":11,"userName": "张成1","auditUserId":"0845643214654231132","header":"2019年06月台账","auditTime":"2019-07-03","ywTerm":100,"ywBranch":110,"ldTerm":100,"lBranch":100,"ywScore":110,"zhScore":100, "byScore":10,"khScore":100,"money":200},' +
+                    '{"id":12,"userName": "周小超1","auditUserId":"0845643214654231132","header":"2019年06月台账","auditTime":"2019-07-03","ywTerm":90,"ywBranch":100,"ldTerm":60,"lBranch":50,"ywScore":60,"zhScore":80, "byScore":10,"khScore":80,"money":180},' +
+                    '{"id":13,"userName": "柳仕胜1","auditUserId":"0845643214654231132","header":"2019年06月台账","auditTime":"2019-07-03","ywTerm":80,"ywBranch":80,"ldTerm":50,"lBranch":80,"ywScore":90,"zhScore":90, "byScore":50,"khScore":90,"money":160}]',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    })
+</script>
+<body>
+<!-- 测试异步请求 -->
+<input type="button" value="添加台账信息" id="insert"/><br>
+
+<input type="button" value="在考核完成后将分数添加到台账信息" id="insetScoreToTz"/><br>
+
+<input type="button" value="根据时间查询用户台账" id="findByTime"/><br>
+
+<input type="button" value="根据台账类型和时间查询用户台账" id="findTzByTimeAndByStyleTz"/><br>
+
+<input type="button" value="添加多个审核台账信息" id="insertScore"/><br>
+
+<input type="button" value="根据当前登录人的userId和台账开始日期和结束日期查询台账信息" id="findUserByMonth"/><br>
+
+<input type="button" value="更新分数信息到数据库中" id="updateScore"/><br>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+/*加载*/
+.caver{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background: rgba(255,255,255,.6);
+	display: none;
+}
+.caver img{
+	width: 50px;
+	height: 50px;
+	margin-top: 50%;
+}
+li{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+li:active{
+    background-color:#FFFFFF;
+}
+table{
+    width: 95%;margin: 0 auto;
+    font-family: 微软雅黑;
+}
+thead td{
+    background-color: #deedfc;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+td{
+	text-align: center;
+    height: 3.2rem;
+    line-height: 1.8rem;
+    border: 1px solid #dfdfdf;
+    font-size: 1.2rem;
+}
+td input{
+    margin: 1rem;
+}
+.colGray{color: #9c9c9c;}
+li{list-style:none;display: inline-block}
+ a, a:visited{text-decoration:none;}
+.tabOne{font-weight: bold;background-color: #deedfc;}
+h3{
+	text-align: center;
+	line-height: 3rem;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+.pb30{
+	padding: 2rem 0;
+}
+.tablePa tr:nth-child(n+2) td:nth-child(n+4){
+	text-align: left;
+}
+.tablePa tr:nth-child(n+2) td:nth-child(n+7){
+	text-align: center;
+}
